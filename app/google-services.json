@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1024292868906",
+    "firebase_url": "https://gamesunitedbar.firebaseio.com",
+    "project_id": "gamesunitedbar",
+    "storage_bucket": "gamesunitedbar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024292868906:android:42bc9e85a908e62b",
+        "android_client_info": {
+          "package_name": "com.fabian.gamesunitedbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024292868906-lvlv65k7gjs6cil3hbpv8c6gnioi1qqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz61ut0aGqISBeBhaD9CqVL4Hm5Vwu658"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
