@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GamesUnitedBar</string>
     <string name="facebook_application_id" translatable="true">154250621786864</string>
+
+    <string name="book_table">Book a table</string>
+    <string name="order_food">Order food</string>
+    <string name="order_drink">Order drinks</string>
+
 </resources>
