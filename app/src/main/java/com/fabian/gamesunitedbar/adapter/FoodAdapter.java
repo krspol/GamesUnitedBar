@@ -1,6 +1,8 @@
 package com.fabian.gamesunitedbar.adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fabian.gamesunitedbar.R;
+import com.fabian.gamesunitedbar.data.SqlLiteDb;
 import com.fabian.gamesunitedbar.model.Food;
 import com.squareup.picasso.Picasso;
 
@@ -63,18 +67,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         private Button addBtn;
         private EditText foodCounter;
 
-        private View listItem;
+        private SqlLiteDb sqlLiteDb;
 
         public MyViewHolder(View view) {
             super(view);
+
+            sqlLiteDb = new SqlLiteDb(context);
 
             image = (ImageView) view.findViewById(R.id.food_photo);
             text = (TextView) view.findViewById(R.id.food_name);
             description = (TextView) view.findViewById(R.id.food_description);
             price = (TextView) view.findViewById(R.id.food_price);
             avaiable = (TextView) view.findViewById(R.id.food_avaiable);
-
-            listItem = view;
 
             increaseBtn = (ImageButton) view.findViewById(R.id.food_increase);
             decreaseBtn = (ImageButton) view.findViewById(R.id.food_decrease);
@@ -101,7 +105,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO add to cart SQLLite
+                    SQLiteDatabase _db = sqlLiteDb.getWritableDatabase();
+
+                    ContentValues values = new ContentValues();
+                    values.put(SqlLiteDb.COLUMN_NAME_PRODUCT, text.getText().toString());
+                    values.put(SqlLiteDb.COLUMN_NAME_AMOUNT, Integer.parseInt( foodCounter.getText().toString()));
+
+                    long result = _db.insert(SqlLiteDb.TABLE_NAME, null, values);
+
+                    if(result == -1)
+                        Toast.makeText(context, "There was a problem with adding new record", Toast.LENGTH_SHORT);
+                    else
+                        Toast.makeText(context, "Record successfully added", Toast.LENGTH_SHORT);
                 }
             });
             view.setOnClickListener(this);

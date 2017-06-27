@@ -12,15 +12,15 @@ public class SqlLiteDb extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "GamesUnited.db";
-    private static final String TABLE_NAME = "CART";
+    public static final String TABLE_NAME = "CART";
 
-    private static final String _ID = "ID";
-    private static final String COLUMN_NAME_PRODUCT = "PRODUCT";
-    private static final String COLUMN_NAME_AMOUNT = "AMOUNT";
+    public static final String _ID = "ID";
+    public static final String COLUMN_NAME_PRODUCT = "PRODUCT";
+    public static final String COLUMN_NAME_AMOUNT = "AMOUNT";
 
     private static final String SQL_CREATE_CART =
             "CREATE TABLE "+ TABLE_NAME +"(" +
-                    _ID + " INTEGER AUTOINCREMENT PRIMARY KEY," +
+                    _ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_PRODUCT + " TEXT," +
                     COLUMN_NAME_AMOUNT + " INTEGER" +
                     ");";
