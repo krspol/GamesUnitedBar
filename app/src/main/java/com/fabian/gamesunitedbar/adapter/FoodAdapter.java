@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,8 +58,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         private TextView price;
         private TextView avaiable;
 
-        private Button increaseBtn;
-        private Button decreaseBtn;
+        private ImageButton increaseBtn;
+        private ImageButton decreaseBtn;
         private Button addBtn;
         private EditText foodCounter;
 
@@ -75,8 +76,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
             listItem = view;
 
-            increaseBtn = (Button) view.findViewById(R.id.food_increase);
-            decreaseBtn = (Button) view.findViewById(R.id.food_decrease);
+            increaseBtn = (ImageButton) view.findViewById(R.id.food_increase);
+            decreaseBtn = (ImageButton) view.findViewById(R.id.food_decrease);
             addBtn = (Button) view.findViewById(R.id.add_to_cart_btn);
             foodCounter = (EditText) view.findViewById(R.id.food_counter);
 

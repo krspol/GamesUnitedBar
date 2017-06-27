@@ -60,11 +60,13 @@
 
 
             <!-- add to cart -->
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/food_decrease"
                 android:onClick="decreaseCart"
+                android:src="@drawable/minus"
+                android:background="@null"
                 android:layout_below="@+id/food_avaiable"
                 android:layout_toRightOf="@+id/food_photo"
                 />
@@ -76,11 +78,13 @@
                 android:text="0"
                 android:layout_toRightOf="@+id/food_decrease"
                 />
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/food_increase"
                 android:onClick="increaseCart"
+                android:src="@drawable/plus"
+                android:background="@null"
                 android:layout_below="@+id/food_avaiable"
                 android:layout_toRightOf="@+id/food_counter"
                 />
