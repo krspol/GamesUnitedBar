@@ -30,9 +30,9 @@ public class MenuItems {
 
     private void loadMenuItems(){
 
-        data.add(new MenuItem("Order food", "http://vignette2.wikia.nocookie.net/cswikia/images/8/8d/Csgo-knife-m9-bayonet-fade.png/revision/latest?cb=20131115142834"));
-        data.add(new MenuItem("Order drinks", "https://t0.rbxcdn.com/64ed207a782cf3b6f11525d6a589e2d7"));
-        data.add(new MenuItem("Book a table", "https://t0.rbxcdn.com/64ed207a782cf3b6f11525d6a589e2d7"));
+        data.add(new MenuItem("Order food", R.drawable.burger));
+        data.add(new MenuItem("Order drinks", R.drawable.beer));
+        data.add(new MenuItem("Book a table", R.drawable.table));
     }
 
     public List<MenuItem> getData(){

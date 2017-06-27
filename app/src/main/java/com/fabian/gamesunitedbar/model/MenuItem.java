@@ -7,16 +7,16 @@ package com.fabian.gamesunitedbar.model;
 public class MenuItem {
 
     private String name;
-    private String imageUrl;
+    private int imageUrl;
     private String description;
 
 
-    public MenuItem(String name, String imageUrl) {
+    public MenuItem(String name, int imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
     }
 
-    public MenuItem(String name, String imageUrl, String description) {
+    public MenuItem(String name, int imageUrl, String description) {
         this(name, imageUrl);
         this.description = description;
     }
@@ -29,11 +29,11 @@ public class MenuItem {
         this.name = name;
     }
 
-    public String getImageUrl() {
+    public int getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
     }
 

@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FoodActivity"></activity>
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode" />
     </application>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
 
 </manifest>

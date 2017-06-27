@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.fabian.gamesunitedbar.adapter.MyAdapter;
+import com.fabian.gamesunitedbar.adapter.MenuItemAdapter;
 import com.fabian.gamesunitedbar.data.MenuItems;
 import com.facebook.FacebookSdk;
 import com.firebase.ui.auth.AuthUI;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(new MyAdapter(data.getData(), this));
+        recyclerView.setAdapter(new MenuItemAdapter(data.getData(), this));
 
 
     }

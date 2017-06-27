@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fabian.gamesunitedbar.MainActivity"
-    android:background="@drawable/bg">
+    tools:context="com.fabian.gamesunitedbar.FoodActivity">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_recycler_view"
-        >
+        android:id="@+id/recycler_food">
 
     </android.support.v7.widget.RecyclerView>
 

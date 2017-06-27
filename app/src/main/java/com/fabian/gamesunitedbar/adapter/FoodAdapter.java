@@ -9,35 +9,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fabian.gamesunitedbar.R;
-import com.fabian.gamesunitedbar.model.MenuItem;
+import com.fabian.gamesunitedbar.model.Food;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 /**
- * Created by Fabian Polkosnik on 26.06.2017.
+ * Created by Fabian Polkosnik on 27.06.2017.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> {
 
-    private List<MenuItem> data;
+    private List<Food> data;
     private Context context;
 
-    public MyAdapter(List<MenuItem> data, Context context) {
+    public FoodAdapter(List<Food> data, Context context) {
         this.data = data;
         this.context = context;
     }
 
     @Override public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_main_item, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_food_item, parent, false));
     }
 
     @Override public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.getTextView().setText(data.get(position).getName());
+        holder.getTitle().setText(data.get(position).getTitle());
         holder.getDescription().setText(data.get(position).getDescription());
-        Picasso.with(context).load(data.get(position).getImageUrl()).into(holder.getImage());
+        holder.getPrice().setText("" + data.get(position).getPrice());
+        holder.getAvaiable().setText("Avaiable " + data.get(position).isAvaiable());
+        Picasso.with(context).load(data.get(position).getImage()).resize(400,400).into(holder.getImage());
     }
 
     @Override public int getItemCount() {
@@ -49,14 +51,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private ImageView image;
         private TextView text;
         private TextView description;
+        private TextView price;
+        private TextView avaiable;
+
         private View listItem;
 
 
         public MyViewHolder(View view) {
             super(view);
-            image = (ImageView) view.findViewById(R.id.menu_item_image);
-            text = (TextView) view.findViewById(R.id.menu_item_title);
-            description = (TextView) view.findViewById(R.id.menu_item_description);
+            image = (ImageView) view.findViewById(R.id.food_photo);
+            text = (TextView) view.findViewById(R.id.food_name);
+            description = (TextView) view.findViewById(R.id.food_description);
+            price = (TextView) view.findViewById(R.id.food_price);
+            avaiable = (TextView) view.findViewById(R.id.food_avaiable);
+
             listItem = view;
 
             view.setOnClickListener(this);
@@ -71,13 +79,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             return description;
         }
 
-        public TextView getTextView() {
+        public TextView getTitle() {
             return text;
         }
 
+        public TextView getPrice() { return price; }
+
+        public TextView getAvaiable(){ return avaiable; }
 
         @Override public void onClick(View v) {
+            final int adapterPosition = getAdapterPosition();
 
         }
     }
 }
+
+
