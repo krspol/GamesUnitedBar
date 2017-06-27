@@ -33,15 +33,6 @@ public class FoodActivity extends AppCompatActivity {
 
     }
 
-
-    public void increaseCart(View view){
-
-    }
-
-    public void decreaseCart(View view){
-
-    }
-
     public void onCheckoutClick(View view){
 
         Intent intent = new Intent(this, CheckoutActivity.class);
