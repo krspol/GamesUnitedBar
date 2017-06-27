@@ -10,19 +10,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SqlLiteDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "GamesUnited.db";
     public static final String TABLE_NAME = "CART";
 
     public static final String _ID = "ID";
     public static final String COLUMN_NAME_PRODUCT = "PRODUCT";
     public static final String COLUMN_NAME_AMOUNT = "AMOUNT";
+    public static final String COLUMN_NAME_PRICE = "PRICE";
 
     private static final String SQL_CREATE_CART =
             "CREATE TABLE "+ TABLE_NAME +"(" +
                     _ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_PRODUCT + " TEXT," +
-                    COLUMN_NAME_AMOUNT + " INTEGER" +
+                    COLUMN_NAME_AMOUNT + " INTEGER," +
+                    COLUMN_NAME_PRICE + " REAL" +
                     ");";
     private static final String SQL_DROP_CART =
             "DROP TABLE IF EXISTS " + TABLE_NAME;

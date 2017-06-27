@@ -54,7 +54,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView image;
         private TextView text;
@@ -88,17 +88,19 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             increaseBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int counter = Integer.parseInt(foodCounter.getText().toString()) + 1;
+                    int counter = Integer.parseInt(foodCounter.getText().toString());
+                    counter = counter <= 5 ? counter + 1 : counter;
 
-                    foodCounter.setText(counter + "");
+                    foodCounter.setText(counter+"", TextView.BufferType.EDITABLE);
                 }
             });
             decreaseBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int counter = Integer.parseInt(foodCounter.getText().toString()) - 1;
+                    int counter = Integer.parseInt(foodCounter.getText().toString());
+                    counter = counter > 0 ? counter - 1 : counter;
 
-                    foodCounter.setText(counter + "");
+                    foodCounter.setText(counter+"", TextView.BufferType.EDITABLE);
                 }
             });
 
@@ -110,6 +112,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
                     ContentValues values = new ContentValues();
                     values.put(SqlLiteDb.COLUMN_NAME_PRODUCT, text.getText().toString());
                     values.put(SqlLiteDb.COLUMN_NAME_AMOUNT, Integer.parseInt( foodCounter.getText().toString()));
+                    values.put(SqlLiteDb.COLUMN_NAME_PRICE, Double.parseDouble( price.getText().toString()));
 
                     long result = _db.insert(SqlLiteDb.TABLE_NAME, null, values);
 
@@ -119,7 +122,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
                         Toast.makeText(context, "Record successfully added", Toast.LENGTH_SHORT);
                 }
             });
-            view.setOnClickListener(this);
         }
 
 
@@ -139,10 +141,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
         public TextView getAvaiable(){ return avaiable; }
 
-        @Override public void onClick(View v) {
-            final int adapterPosition = getAdapterPosition();
-
-        }
     }
 }
 

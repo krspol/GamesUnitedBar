@@ -74,7 +74,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/food_counter"
                 android:layout_below="@+id/food_avaiable"
-                android:text="0"
+                android:inputType="number"
+                android:text="1"
+                android:focusable="false"
                 android:layout_toRightOf="@+id/food_decrease"
                 />
             <ImageButton
@@ -92,10 +94,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/add_to_cart_btn"
                 android:text="Add"
-                android:onClick="onAddClick"
                 android:layout_toRightOf="@id/food_increase"
                 />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
 </LinearLayout>

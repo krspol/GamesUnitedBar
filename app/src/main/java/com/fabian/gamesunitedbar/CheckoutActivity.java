@@ -10,7 +10,6 @@ import com.fabian.gamesunitedbar.data.SqlLiteDb;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -26,10 +25,31 @@ public class CheckoutActivity extends AppCompatActivity {
         sqlLiteDb = new SqlLiteDb(getApplicationContext());
         SQLiteDatabase _db = sqlLiteDb.getReadableDatabase();
 
+        Cursor cursor = getAll(_db);
+
+        List itemIds = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(SqlLiteDb._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(SqlLiteDb.COLUMN_NAME_PRODUCT));
+            int amount = cursor.getInt(cursor.getColumnIndexOrThrow(SqlLiteDb.COLUMN_NAME_AMOUNT));
+            double price = cursor.getDouble(cursor.getColumnIndexOrThrow(SqlLiteDb.COLUMN_NAME_PRICE));
+
+            itemIds.add("id: " + itemId + "\t name: " + name + "\t amount: " + amount + "\t price: " + price);
+        }
+        cursor.close();
+
+
+        checkoutText = (TextView) findViewById(R.id.checkout_list);
+        checkoutText.setText(itemIds.toString());
+    }
+
+    private Cursor getAll(SQLiteDatabase _db){
         String[] projection = {
                 SqlLiteDb._ID,
                 SqlLiteDb.COLUMN_NAME_PRODUCT,
-                SqlLiteDb.COLUMN_NAME_AMOUNT
+                SqlLiteDb.COLUMN_NAME_AMOUNT,
+                SqlLiteDb.COLUMN_NAME_PRICE
         };
 
         Cursor cursor = _db.query(
@@ -42,24 +62,10 @@ public class CheckoutActivity extends AppCompatActivity {
                 null                                 // The sort order
         );
 
-        List itemIds = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(SqlLiteDb._ID));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow(SqlLiteDb.COLUMN_NAME_PRODUCT));
-            int amount = cursor.getInt(cursor.getColumnIndexOrThrow(SqlLiteDb.COLUMN_NAME_AMOUNT));
-            itemIds.add(itemId + " " + name + " " + amount);
-        }
-        cursor.close();
-
-
-        checkoutText = (TextView) findViewById(R.id.checkout_list);
-        checkoutText.setText(itemIds.toString());
+        return cursor;
     }
 
-    private String getProducts(){
-        // TODO get cart from SQLLite
-
-        return null;
+    private void clearTable(SQLiteDatabase _db){
+        _db.delete(SqlLiteDb.TABLE_NAME, null, null);
     }
 }
