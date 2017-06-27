@@ -57,8 +57,43 @@
                 android:id="@+id/food_avaiable"
                 android:layout_below="@+id/food_description"
                 android:layout_toRightOf="@+id/food_name"/>
-        </RelativeLayout>
 
+
+            <!-- add to cart -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/food_decrease"
+                android:onClick="decreaseCart"
+                android:layout_below="@+id/food_avaiable"
+                android:layout_toRightOf="@+id/food_photo"
+                />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/food_counter"
+                android:layout_below="@+id/food_avaiable"
+                android:text="0"
+                android:layout_toRightOf="@+id/food_decrease"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/food_increase"
+                android:onClick="increaseCart"
+                android:layout_below="@+id/food_avaiable"
+                android:layout_toRightOf="@+id/food_counter"
+                />
+            <!--TODO add string-->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_to_cart_btn"
+                android:text="Add"
+                android:onClick="onAddClick"
+                android:layout_toRightOf="@id/food_increase"
+                />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

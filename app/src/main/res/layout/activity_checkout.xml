@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fabian.gamesunitedbar.model.CheckoutActivity">
+    tools:context="com.fabian.gamesunitedbar.CheckoutActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/checkout_list"
+        />
 
 </android.support.constraint.ConstraintLayout>

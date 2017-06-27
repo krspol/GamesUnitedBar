@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
     private List<Food> data;
     private Context context;
+
 
     public FoodAdapter(List<Food> data, Context context) {
         this.data = data;
@@ -54,11 +57,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         private TextView price;
         private TextView avaiable;
 
-        private View listItem;
+        private Button increaseBtn;
+        private Button decreaseBtn;
+        private Button addBtn;
+        private EditText foodCounter;
 
+        private View listItem;
 
         public MyViewHolder(View view) {
             super(view);
+
             image = (ImageView) view.findViewById(R.id.food_photo);
             text = (TextView) view.findViewById(R.id.food_name);
             description = (TextView) view.findViewById(R.id.food_description);
@@ -67,6 +75,34 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
             listItem = view;
 
+            increaseBtn = (Button) view.findViewById(R.id.food_increase);
+            decreaseBtn = (Button) view.findViewById(R.id.food_decrease);
+            addBtn = (Button) view.findViewById(R.id.add_to_cart_btn);
+            foodCounter = (EditText) view.findViewById(R.id.food_counter);
+
+            increaseBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int counter = Integer.parseInt(foodCounter.getText().toString()) + 1;
+
+                    foodCounter.setText(counter + "");
+                }
+            });
+            decreaseBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int counter = Integer.parseInt(foodCounter.getText().toString()) - 1;
+
+                    foodCounter.setText(counter + "");
+                }
+            });
+
+            addBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // TODO add to cart SQLLite
+                }
+            });
             view.setOnClickListener(this);
         }
 
