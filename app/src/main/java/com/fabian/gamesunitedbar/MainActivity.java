@@ -1,6 +1,8 @@
 package com.fabian.gamesunitedbar;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +10,7 @@ import android.util.Log;
 
 import com.fabian.gamesunitedbar.adapter.MenuItemAdapter;
 import com.fabian.gamesunitedbar.data.MenuItems;
+import com.fabian.gamesunitedbar.data.SqlLiteDb;
 import com.facebook.FacebookSdk;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +38,9 @@ public class MainActivity extends AppToolbarCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         setContentView(R.layout.activity_main);
+
+        // assign a number of record to checkbox item
+        AppToolbarCompatActivity.productsInCart = getDatabaseSize();
         defineActionBar();
 
         auth = FirebaseAuth.getInstance();
@@ -63,6 +69,8 @@ public class MainActivity extends AppToolbarCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(new MenuItemAdapter(data.getData(), this));
 
+
+
     }
 
     @Override
@@ -82,5 +90,19 @@ public class MainActivity extends AppToolbarCompatActivity {
         super.onResume();
         // products in cart must be updated
         invalidateOptionsMenu();
+    }
+
+    // returns number of records in database
+    private int getDatabaseSize(){
+        SqlLiteDb sqlLiteDb = new SqlLiteDb(this);
+        SQLiteDatabase db = sqlLiteDb.getReadableDatabase();
+        Cursor mCount= db.rawQuery("select count(*) from " + SqlLiteDb.TABLE_NAME, null);
+        mCount.moveToFirst();
+
+        int count= mCount.getInt(0);
+
+        mCount.close();
+
+        return count;
     }
 }
