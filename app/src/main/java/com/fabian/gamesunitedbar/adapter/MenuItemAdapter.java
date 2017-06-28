@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fabian.gamesunitedbar.DrinkActivity;
 import com.fabian.gamesunitedbar.FoodActivity;
 import com.fabian.gamesunitedbar.MainActivity;
 import com.fabian.gamesunitedbar.R;
@@ -52,7 +53,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
         private ImageView image;
         private TextView text;
         private TextView description;
-        private View listItem;
 
 
         public MyViewHolder(View view) {
@@ -60,7 +60,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
             image = (ImageView) view.findViewById(R.id.menu_item_image);
             text = (TextView) view.findViewById(R.id.menu_item_title);
             description = (TextView) view.findViewById(R.id.menu_item_description);
-            listItem = view;
 
             view.setOnClickListener(this);
         }
@@ -90,7 +89,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
                     intent = new Intent(context, FoodActivity.class);
                     break;
                 case 1:
-                    intent = new Intent(context, FoodActivity.class);
+                    intent = new Intent(context, DrinkActivity.class);
                     break;
                 case 2:
                     intent = new Intent(context, FoodActivity.class);
@@ -102,7 +101,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
 
             context.startActivity(intent);
 
-            ((MainActivity) context).finish();
+//            ((MainActivity) context).finish();
 
         }
     }

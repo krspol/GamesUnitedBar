@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fabian.gamesunitedbar.AppToolbarCompatActivity;
 import com.fabian.gamesunitedbar.R;
 import com.fabian.gamesunitedbar.data.SqlLiteDb;
 import com.fabian.gamesunitedbar.model.Food;
@@ -116,10 +117,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
                     long result = _db.insert(SqlLiteDb.TABLE_NAME, null, values);
 
+                    // TODO toast not working
                     if(result == -1)
                         Toast.makeText(context, "There was a problem with adding new record", Toast.LENGTH_SHORT);
-                    else
+                    else {
                         Toast.makeText(context, "Record successfully added", Toast.LENGTH_SHORT);
+                        AppToolbarCompatActivity.productsInCart += Integer.parseInt(foodCounter.getText().toString());
+                        ((AppToolbarCompatActivity)context).invalidateOptionsMenu();
+                    }
                 }
             });
         }

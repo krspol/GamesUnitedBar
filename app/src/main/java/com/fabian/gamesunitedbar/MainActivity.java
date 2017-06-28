@@ -1,7 +1,6 @@
 package com.fabian.gamesunitedbar;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,28 +14,28 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
 
-
-public class MainActivity extends AppCompatActivity {
+// check if user is logged, if not
+// he can log in using Facebook or Google account
+//
+// if logged - shows main menu
+public class MainActivity extends AppToolbarCompatActivity {
 
     private static int RC_SIGN_IN = 0;
 
     private FirebaseAuth auth;
+
     private MenuItems data;
 
-    RecyclerView recyclerView;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseAuth.getInstance().signOut();
-    }
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+
         setContentView(R.layout.activity_main);
+        defineActionBar();
 
         auth = FirebaseAuth.getInstance();
 
@@ -44,37 +43,43 @@ public class MainActivity extends AppCompatActivity {
         if(auth.getCurrentUser() != null)
             Log.d("AUTH", auth.getCurrentUser().getEmail());
         else
+            // gives possibility to log in through Facebook/Google account
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(
-                                    Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                    Arrays.asList(
                                             new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
                                             new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build() ))
                             .setTheme(R.style.AuthTheme)
                             .build(),
                     RC_SIGN_IN);
 
+        // gets mock data
         data = MenuItems.getInstance();
 
+        // defines and implement RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(new MenuItemAdapter(data.getData(), this));
-
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // checks if user is authorized or not
         if(requestCode == RC_SIGN_IN){
             if(resultCode == RESULT_OK)
-                // user log in
                 Log.d("AUTH", "user already logged in");
             else
-                // user not authenticated
                 Log.d("AUTH", "user not authenticated");
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
+    }
 }

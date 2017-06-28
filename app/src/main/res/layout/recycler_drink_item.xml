@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="2dp"
+        app:contentPadding="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- drink photo -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_photo"
+                android:layout_alignParentTop="true"/>
+
+            <!-- drink name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_name"
+                android:layout_toRightOf="@+id/drink_photo"
+                android:textSize="24dp"
+                android:layout_margin="5dp"
+                android:textStyle="bold"/>
+
+
+            <!-- volume -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_volume"
+                android:textSize="24dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@id/drink_name"
+                android:layout_toRightOf="@+id/drink_photo"/>
+
+            <!-- price -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_price"
+                android:textSize="24dp"
+                android:layout_below="@id/drink_name"
+                android:layout_toRightOf="@+id/drink_volume"/>
+
+
+            <!-- add to cart -->
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_decrease"
+                android:src="@drawable/minus"
+                android:background="@null"
+                android:layout_below="@id/drink_price"
+                android:layout_toRightOf="@+id/drink_photo"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_counter"
+                android:inputType="number"
+                android:text="1"
+                android:focusable="false"
+                android:layout_below="@id/drink_price"
+                android:layout_toRightOf="@+id/drink_decrease"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drink_increase"
+                android:src="@drawable/plus"
+                android:background="@null"
+                android:layout_below="@id/drink_price"
+                android:layout_toRightOf="@+id/drink_counter"
+                />
+            <!--TODO add string-->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_to_cart_btn"
+                android:text="Add"
+                android:layout_below="@id/drink_price"
+                android:layout_toRightOf="@id/drink_increase"
+                />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

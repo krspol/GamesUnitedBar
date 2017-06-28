@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.fabian.gamesunitedbar.adapter.FoodAdapter;
 import com.fabian.gamesunitedbar.data.FoodMockData;
 
-public class FoodActivity extends AppCompatActivity {
+public class FoodActivity extends AppToolbarCompatActivity {
 
     private RecyclerView recyclerView;
     private FoodMockData data;
@@ -31,11 +31,7 @@ public class FoodActivity extends AppCompatActivity {
 
         foodCounter = (EditText) findViewById(R.id.food_counter);
 
+        defineActionBar();
     }
 
-    public void onCheckoutClick(View view){
-
-        Intent intent = new Intent(this, CheckoutActivity.class);
-        startActivity(intent);
-    }
 }
