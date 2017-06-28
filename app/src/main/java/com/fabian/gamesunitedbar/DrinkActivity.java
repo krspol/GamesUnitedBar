@@ -23,7 +23,7 @@ public class DrinkActivity extends AppToolbarCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_drink);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(new DrinkAdapter(data.getData(), getApplicationContext()));
+        recyclerView.setAdapter(new DrinkAdapter(data.getData(), this));
 
         defineActionBar();
     }

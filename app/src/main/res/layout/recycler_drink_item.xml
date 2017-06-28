@@ -64,7 +64,7 @@
                 android:layout_below="@id/drink_price"
                 android:layout_toRightOf="@+id/drink_photo"
                 />
-
+            <!-- TODO change EditText to Label -->
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

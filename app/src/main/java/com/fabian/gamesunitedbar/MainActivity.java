@@ -80,6 +80,7 @@ public class MainActivity extends AppToolbarCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // products in cart must be updated
         invalidateOptionsMenu();
     }
 }

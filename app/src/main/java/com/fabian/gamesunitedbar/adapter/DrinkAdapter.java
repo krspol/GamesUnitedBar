@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fabian.gamesunitedbar.AppToolbarCompatActivity;
 import com.fabian.gamesunitedbar.R;
 import com.fabian.gamesunitedbar.data.SqlLiteDb;
 import com.fabian.gamesunitedbar.model.Drink;
@@ -44,7 +46,7 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.MyViewAdapte
     @Override
     public void onBindViewHolder(MyViewAdapter holder, int position) {
         holder.getTitle().setText(data.get(position).getName());
-        holder.getPrice().setText(data.get(position).getPrice()+" zł");
+        holder.getPrice().setText(data.get(position).getPrice()+"");
         holder.getVolume().setText(data.get(position).getVolume()+" ml");
         Picasso.with(context).load(data.get(position).getPhoto()).resize(400,400).into(holder.getPhoto());
 
@@ -111,18 +113,25 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.MyViewAdapte
                 public void onClick(View view) {
                     SQLiteDatabase _db = sqlLiteDb.getWritableDatabase();
 
+                    int drinksAmount = Integer.parseInt( drinkCounter.getText().toString());
+
                     ContentValues values = new ContentValues();
                     values.put(SqlLiteDb.COLUMN_NAME_PRODUCT, title.getText().toString());
-                    values.put(SqlLiteDb.COLUMN_NAME_AMOUNT, Integer.parseInt( drinkCounter.getText().toString()));
+                    values.put(SqlLiteDb.COLUMN_NAME_AMOUNT, drinksAmount);
                     values.put(SqlLiteDb.COLUMN_NAME_PRICE, Double.parseDouble( price.getText().toString()));
 
                     long result = _db.insert(SqlLiteDb.TABLE_NAME, null, values);
 
-                    // TODO tost not working
-                    if(result == -1)
-                        Toast.makeText(context, "There was a problem with adding new record", Toast.LENGTH_SHORT);
-                    else
-                        Toast.makeText(context, "Record successfully added", Toast.LENGTH_SHORT);
+                    // TODO Tost not working
+                    if(result == -1) {
+                        Toast.makeText(context, "There was a problem with adding product to cart. Try Again.", Toast.LENGTH_SHORT);
+                        Log.d("Database", "Could't add drink to SQLite.");
+                    }else {
+                        Log.d("Database", "Drink successfully added to SQLite.");
+                        AppToolbarCompatActivity.productsInCart += drinksAmount;
+                        ((AppToolbarCompatActivity)context).invalidateOptionsMenu();
+
+                    }
                 }
             });
 
